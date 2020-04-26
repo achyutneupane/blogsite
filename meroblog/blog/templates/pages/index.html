@@ -1,0 +1,50 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+
+<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+<div class="col-xl-8 py-5 px-md-5">
+    <div class="row pt-md-4">
+        {% for blog in BlogData %}
+         <br>
+        <div class="col-md-12">
+            <div class="blog-entry ftco-animate d-md-flex">
+                <a href="single.html" class="img img-2"
+                   style="background-image: url({{ blog.image.url }});"></a>
+                <div class="text text-2 pl-md-4">
+                    <h3 class="mb-2"><a href="single.html">{{ blog.title|upper }}</a></h3>
+                    <div class="meta-wrap">
+                        <p class="meta">
+                            <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+                            <span><a href="single.html"><i
+                                    class="icon-folder-o mr-2"></i>{{blog.category|upper}}</a></span>
+                        </p>
+                    </div>
+                    <p class="mb-4">A small river named Duden flows by their place and supplies it with
+                        the necessary regelialia.</p>
+                    <p><a href="#" class="btn-custom">Read More <span
+                            class="ion-ios-arrow-forward"></span></a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div><!-- END-->
+    <div class="pagination">
+    <span class="step-links">
+        {% if allData.has_previous %}
+            <a href="?page=1">&lt; first</a>
+            <a href="?page={{ allData.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ allData.number }} of {{ allData.paginator.num_pages }}.
+        </span>
+
+        {% if allData.has_next %}
+            <a href="?page={{ allData.next_page_number }}">next</a>
+            <a href="?page={{ allData.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% endblock %}
